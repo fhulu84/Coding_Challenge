@@ -1,20 +1,16 @@
+/*
+	Wrong inputs are ignored
+	Expected inputs:
+	HEX: #0000FF
+	RGB: rgb(0, 0, 255) 
+*/
+
+// Convert color formats 
 const convertColorFormat = (color) => {
 	if(color.startsWith('#')) { // HEX to RGB
-		const hex = color.replace('#',''); 
-		return 'rgb('+
-				`${parseInt(hex.substring(0, 2), 16)},`+
-				`${parseInt(hex.substring(2, 4), 16)},`+
-				`${parseInt(hex.substring(4, 6), 16)}`+
-				')';
+		return hexToRgb(color);
 	} else if(color.startsWith('rgb')) { // RGB to HEX
-		const rgb = color.split(',').map(item => {
-			return parseInt(item.trim().replace('rgb(','').replace(')',''));
-		});
-
-		return '#' +
-				`${decimalToHex(rgb[0])}` + 
-				`${decimalToHex(rgb[1])}` +
-				`${decimalToHex(rgb[2])}`;
+		return rgbToHex(color);
 	} else {
 		console.log('Ooops! Something is wrong here...');
 	}
