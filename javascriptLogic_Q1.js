@@ -39,44 +39,6 @@ const stringsExist = (items) => {
 	return items.filter(item => typeof item == 'string').length > 0;
 }
 
-// CLEAN ROOM - Numbers only
-const cleanRoom1 = (items) => {
-	
-	const numbers = []; //visited numbers
-	const organized = [];
-
-	items.sort((a, b) => a > b ? 1 : -1); //sort items asc
-
-	for(item of items) {
-		if(numbers.indexOf(item) > -1) {
-			continue; //jump to next if this one already visited
-		}
-		//collect all of this item
-		const collected = items.filter(num => num === item);
-
-		if(collected.length > 1) { 
-			organized.push(collected); //more than one
-		} else { 
-			organized.push(collected[0]); //just one item
-		}
-		numbers.push(item); //done with this item
-	}
-
-	return organized;
-}
-
-// CLEAN ROOM - Numbers and strings
-const cleanRoom2 = (items) => {
-	const organized = [];
-
-	items.sort((a, b) => a - b); //sort items
-
-	organized.push(items.filter(item => typeof item == 'number'));
-	organized.push(items.filter(item => typeof item == 'string'));
-
-	return organized;
-}
-
 
 // PRINT ARRAY in one line
 const printArr = (arr) => {
